@@ -15,12 +15,13 @@ body{
 /* NAVBAR */
 nav{
     background:#111;
+    display:flex;
+    justify-content:center;
+    gap:25px;
     padding:15px;
-    text-align:center;
 }
 nav a{
     color:#fff;
-    margin:0 15px;
     text-decoration:none;
     font-weight:bold;
 }
@@ -84,6 +85,11 @@ h1{
     color:#aaa;
     font-size:14px;
 }
+.downloads-count{
+    color:#00ffd5;
+    font-size:14px;
+    margin-top:5px;
+}
 
 /* DOWNLOAD */
 .download{
@@ -93,6 +99,7 @@ h1{
     padding:10px 18px;
     border-radius:10px;
     font-weight:bold;
+    margin-left:15px;
 }
 .download:hover{
     background:#00cbb0;
@@ -115,38 +122,76 @@ h1{
 <input type="text" class="search-box" placeholder="🔍 ابحث عن لعبة..." onkeyup="searchGame()">
 
 <!-- GAME ITEM -->
-<div class="game">
+<div class="game" data-gameid="android1">
 <img src="images/android1.jpg">
 <div class="game-info">
 <h2>اسم لعبة أندرويد</h2>
 <span>الحجم: 350 MB</span>
+<div class="downloads-count" id="count-android1">تحميلات: 0</div>
 </div>
-<a href="#" class="download">تحميل</a>
+<a href="https://pixeldrain.com/u/kDdafHfy" class="download" target="_blank">تحميل</a>
 </div>
 
-<div class="game">
+<div class="game" data-gameid="android2">
 <img src="images/android2.jpg">
 <div class="game-info">
 <h2>لعبة مغامرات</h2>
 <span>الحجم: 520 MB</span>
+<div class="downloads-count" id="count-android2">تحميلات: 0</div>
 </div>
-<a href="downloads/game1.zip" class="download" download>تحميل</a>
+<a href="https://pixeldrain.com/u/ANOTHER_ID" class="download" target="_blank">تحميل</a>
 </div>
 
-<!-- انسخ البلوك لإضافة لعبة جديدة -->
+<!-- انسخ هذا البلوك لإضافة لعبة جديدة -->
+<!--
+<div class="game" data-gameid="android3">
+<img src="images/IMAGE.jpg">
+<div class="game-info">
+<h2>اسم اللعبة</h2>
+<span>الحجم: X MB</span>
+<div class="downloads-count" id="count-android3">تحميلات: 0</div>
+</div>
+<a href="PIXELDRAIN_LINK" class="download" target="_blank">تحميل</a>
+</div>
+-->
 
 </div>
 
 <script>
+// البحث عن الألعاب
 function searchGame(){
     let input = document.querySelector(".search-box").value.toLowerCase();
     let games = document.querySelectorAll(".game");
-
     games.forEach(game=>{
         let title = game.querySelector("h2").innerText.toLowerCase();
         game.style.display = title.includes(input) ? "flex" : "none";
     });
 }
+
+// عداد التحميلات لكل الزوار باستخدام Google Apps Script
+const API_URL = 'https://script.google.com/macros/s/AKfycbwD8qMl1Gp6cLE4K29FwbI4PFbHW-0DHBkZmbWBpvjKlEnlFol9yySU1PbwCg207TmU/exec';
+
+document.querySelectorAll('.game').forEach(game=>{
+    const gameID = game.dataset.gameid;
+    const countEl = document.getElementById('count-' + gameID);
+    const downloadBtn = game.querySelector('.download');
+
+    // جلب العدد عند تحميل الصفحة
+    fetch(`${API_URL}?action=get&game=${gameID}`)
+        .then(r=>r.text())
+        .then(count=>{
+            countEl.textContent = "تحميلات: " + count;
+        });
+
+    // عند الضغط على زر التحميل
+    downloadBtn.addEventListener('click', ()=>{
+        fetch(`${API_URL}?action=increment&game=${gameID}`)
+            .then(r=>r.text())
+            .then(count=>{
+                countEl.textContent = "تحميلات: " + count;
+            });
+    });
+});
 </script>
 
 </body>
