@@ -5,45 +5,46 @@
 <title>SAJAD GAMES</title>
 <style>
 body{
-    background:#0b0b0b;
+    background:#0e0e0e;
     color:white;
     font-family:Arial;
-    text-align:center;
     margin:0;
 }
 header{
-    padding:30px;
     background:#111;
-    font-size:28px;
-    letter-spacing:2px;
-}
-.game{
-    background:#1c1c1c;
-    margin:20px auto;
     padding:20px;
-    width:80%;
-    max-width:500px;
-    border-radius:15px;
-    box-shadow:0 0 15px #000;
+    text-align:center;
+    font-size:28px;
 }
-a{
-    display:inline-block;
-    margin-top:10px;
-    padding:10px 20px;
+.games{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+}
+.card{
+    background:#1c1c1c;
+    border-radius:15px;
+    overflow:hidden;
+    text-align:center;
+}
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+.card h3{
+    margin:15px 0;
+}
+.card a{
+    display:block;
+    margin:15px;
+    padding:10px;
     background:#00ffd5;
     color:black;
     text-decoration:none;
     border-radius:8px;
     font-weight:bold;
-}
-a:hover{
-    background:#00bfa5;
-}
-footer{
-    margin-top:40px;
-    padding:15px;
-    background:#111;
-    font-size:14px;
 }
 </style>
 </head>
@@ -51,15 +52,15 @@ footer{
 
 <header>🎮 SAJAD GAMES</header>
 
-<p>الموقع الرسمي لنشر ألعابي</p>
+<div class="games">
 
-<div class="game">
-<h2>اسم اللعبة الأولى</h2>
-<p>وصف قصير عن اللعبة</p>
-<a href="#">تحميل اللعبة</a>
+<div class="card">
+<img src="images/game1.jpg">
+<h3>اسم اللعبة</h3>
+<a href="game1.html">دخول صفحة اللعبة</a>
 </div>
 
-<footer>© 2025 SAJAD GAMES</footer>
+</div>
 
 </body>
 </html>
