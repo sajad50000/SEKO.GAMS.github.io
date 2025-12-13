@@ -3,7 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <title>ألعاب أندرويد | SAJAD GAMES</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+body{
+    margin:0;
+    font-family:Tahoma, Arial;
+    background:#0d0d0d;
+    color:#fff;
+}
+
+/* NAVBAR */
+nav{
+    background:#111;
+    padding:15px;
+    text-align:center;
+}
+nav a{
+    color:#fff;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
+}
+nav a:hover{ color:#00ffd5; }
+
+/* CONTAINER */
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:30px 15px;
+}
+
+h1{
+    margin-bottom:20px;
+}
+
+/* SEARCH */
+.search-box{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:none;
+    font-size:16px;
+    margin-bottom:30px;
+    outline:none;
+}
+
+/* GAME CARD */
+.game{
+    display:flex;
+    align-items:center;
+    background:#1a1a1a;
+    padding:15px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 0 15px rgba(0,0,0,0.6);
+    transition:0.3s;
+}
+.game:hover{
+    transform:scale(1.02);
+}
+
+/* ICON */
+.game img{
+    width:70px;
+    height:70px;
+    border-radius:15px;
+    object-fit:cover;
+    margin-left:15px;
+}
+
+/* INFO */
+.game-info{
+    flex:1;
+}
+.game-info h2{
+    margin:0;
+    font-size:20px;
+}
+.game-info span{
+    color:#aaa;
+    font-size:14px;
+}
+
+/* DOWNLOAD */
+.download{
+    background:#00ffd5;
+    color:#000;
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:10px;
+    font-weight:bold;
+}
+.download:hover{
+    background:#00cbb0;
+}
+</style>
 </head>
 
 <body>
@@ -18,16 +112,42 @@
 <div class="container">
 <h1>📱 ألعاب أندرويد</h1>
 
-<div class="article">
+<input type="text" class="search-box" placeholder="🔍 ابحث عن لعبة..." onkeyup="searchGame()">
+
+<!-- GAME ITEM -->
+<div class="game">
 <img src="images/android1.jpg">
-<div class="article-content">
-<h2>اسم اللعبة</h2>
-<p>لعبة أندرويد ممتعة مع أسلوب لعب مميز.</p>
-<a href="game-android-1.html">صفحة اللعبة</a>
+<div class="game-info">
+<h2>اسم لعبة أندرويد</h2>
+<span>الحجم: 350 MB</span>
 </div>
+<a href="#" class="download">تحميل</a>
 </div>
 
+<div class="game">
+<img src="images/android2.jpg">
+<div class="game-info">
+<h2>لعبة مغامرات</h2>
+<span>الحجم: 520 MB</span>
 </div>
+<a href="#" class="download">تحميل</a>
+</div>
+
+<!-- انسخ البلوك لإضافة لعبة جديدة -->
+
+</div>
+
+<script>
+function searchGame(){
+    let input = document.querySelector(".search-box").value.toLowerCase();
+    let games = document.querySelectorAll(".game");
+
+    games.forEach(game=>{
+        let title = game.querySelector("h2").innerText.toLowerCase();
+        game.style.display = title.includes(input) ? "flex" : "none";
+    });
+}
+</script>
 
 </body>
 </html>
