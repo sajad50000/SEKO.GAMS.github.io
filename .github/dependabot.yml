@@ -1,0 +1,25 @@
+# ملف dependabot.yml لتحديث مكتبات Android/Gradle تلقائيًا
+version: 2
+updates:
+  # تحديث مكتبات Gradle في المشروع الرئيسي
+  - package-ecosystem: "gradle"
+    directory: "/"                # جذر المشروع
+    schedule:
+      interval: "weekly"          # الفحص أسبوعيًا
+      day: "monday"               # يمكن اختيار يوم محدد
+    commit-message:
+      prefix: "deps"              # اسم البريفكس للـ commit
+    open-pull-requests-limit: 5   # الحد الأقصى للـ PR المفتوحة
+    rebase-strategy: "auto"
+
+  # تحديث مكتبات Gradle في مجلد app (إذا موجود)
+  - package-ecosystem: "gradle"
+    directory: "/app"             # مجلد التطبيق
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    commit-message:
+      prefix: "deps"
+    open-pull-requests-limit: 5
+    rebase-strategy: "auto"
+
