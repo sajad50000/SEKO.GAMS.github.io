@@ -19,6 +19,10 @@
       --gold: #f0b90b;
       --soft-white: #f0f4ff;
       --glass-border: rgba(255, 255, 255, 0.15);
+      --google-blue: #4285f4;
+      --google-green: #0f9d58;
+      --google-yellow: #f4b400;
+      --google-red: #db4437;
     }
 
     * {
@@ -360,15 +364,26 @@
       border-radius: 35px;
       text-decoration: none;
       font-weight: 900;
-      color: #000;
+      color: #fff;
       transition: all 0.4s;
       font-size: 1rem;
       box-shadow: 0 15px 35px rgba(0,0,0,0.5);
       transform-style: preserve-3d;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .modal-buttons a.pixeldrain {
-      background: linear-gradient(135deg, #00ffd5, #0088ff);
+    /* زر Google Drive بتدرج ألوان جوجل */
+    .modal-buttons a.googledrive {
+      background: linear-gradient(135deg, #4285f4, #0f9d58, #f4b400);
+      background-size: 200% 200%;
+      animation: googleShine 3s infinite alternate;
+    }
+
+    @keyframes googleShine {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
 
     .modal-buttons a.mediafire {
@@ -378,6 +393,13 @@
     .modal-buttons a:hover {
       transform: translateZ(30px) scale(1.1);
       filter: brightness(1.2);
+    }
+
+    /* أيقونات SVG داخل الأزرار */
+    .btn-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
     }
 
     #closeModal {
@@ -432,7 +454,6 @@
       }
 
       .game img {
-        margin-left: 0;
         width: 80px;
         height: 80px;
       }
@@ -484,8 +505,9 @@
 
   <!-- GAME ITEMS -->
 
+  <!-- لعبة 1: مغامرة الألغاز -->
   <div class="game" data-gameid="game2" 
-       data-pixeldrain="https://pixeldrain.com/u/rrLZ9tHC" 
+       data-googledrive="https://drive.google.com/file/d/XXXXXXXXX/view" 
        data-mediafire="https://download1587.mediafire.com/uwhyzzmdlwbghyuPqrgzWnSXQCAA4g66ptugJ4b_HdFhZ67FzkeGbkBDkYt8Bxu7W1BpRtNbwQedpTEUqcw7fkhSEqkjKqAtgmOuiw2d2WwWc3hqa9HBK6LyQT8BVAruYyoPTsOXPouWL61cc93-52xz2GF9WGoh8Ef_VKG505pD/t0272wuwc6gkrs1/%D9%85%D8%BA%D8%A7%D9%85%D8%B1%D8%A9+%D8%A7%D9%84%D8%A3%D9%84%D8%BA%D8%A7%D8%B2.rar">
     <img src="images/مغامرة الألغاز.png" alt="مغامرة الألغاز">
     <div class="game-info">
@@ -496,8 +518,9 @@
     <button class="download">تحميل</button>
   </div>
 
+  <!-- لعبة 2: نبض الحركة -->
   <div class="game" data-gameid="game3" 
-       data-pixeldrain="https://pixeldrain.com/u/x3xbzFFf" 
+       data-googledrive="https://drive.google.com/file/d/YYYYYYYYY/view" 
        data-mediafire="https://download844.mediafire.com/sjk36wotvnwgLCc5jwFkdgLYfBzgfLWE35Q83uycQNJONdr9SLoduMvGWMWzvgnG7sgXZgP0k9ZC24azdpTzMKNH5g8VoYSlvJoErLWPOCxsSrkMahzygOy48tHZxLBvt-SHQUWKuyQ78QGb21m8Pn_rJDuHWf4eiWDr2AqWlUpg/vrjmrte5y3rdxa2/%D9%86%D8%A8%D8%B6+%D8%A7%D9%84%D8%AD%D8%B1%D9%83%D9%87.rar">
     <img src="images/نبض الحركه.png" alt="نبض الحركة">
     <div class="game-info">
@@ -508,8 +531,9 @@
     <button class="download">تحميل</button>
   </div>
 
+  <!-- لعبة 3: GAPS OF DARKNESS -->
   <div class="game" data-gameid="game5" 
-       data-pixeldrain="https://pixeldrain.com/u/R6GMHX7z" 
+       data-googledrive="https://drive.google.com/file/d/ZZZZZZZZZ/view" 
        data-mediafire="https://download848.mediafire.com/itezoxmd20fgQsB-Qruu4Dbdaczg_2YAgSZnuUk_xc8csynAc6StjjYYoUcOtPifNEgZuqmbvFoiPv6A2-p0tJl_B6SmA64kX7hYAauZ9_RUvaVpCrjgABbVbv96OFvSkNNO7V3mk_xFpspSXXPYXPJ0dIvMWFdfpIhXv0POJsc7/cnya0ftkh0fbair/%D9%85%D9%85%D8%B1+%D8%A7%D9%84%D9%85%D9%88%D8%AA.rar">
     <img src="images/GAPS OF DARKNESS.png" alt="GAPS OF DARKNESS">
     <div class="game-info">
@@ -520,8 +544,9 @@
     <button class="download">تحميل</button>
   </div>
 
+  <!-- لعبة 4: ممر الموت -->
   <div class="game" data-gameid="game4" 
-       data-pixeldrain="0000000"
+       data-googledrive="https://drive.google.com/file/d/WWWWWWWWW/view"
        data-mediafire="https://download1655.mediafire.com/542tdi5egnfg6QkGPEfzo0OnUtKHVIMc92fcpjvk275vNpD73OXwQvmfBr8yYx92lGzLSCL6OGwGzGcnFQA1X2X6R788B637ZgRKZyfbRB9JpcSjH8rxaumeukRkx-ObWzo_PUDHEkPqBzh9_G2M_HWuuSDZaLG7HbeYW4LhnsS7/lf18e7kgg39q8ha/GAPS+OF+DARKNESS.rar">
     <img src="images/ممر الموت.png" alt="ممر الموت">
     <div class="game-info">
@@ -548,8 +573,25 @@
     <p>💰 التبرع: <span>زين كاش</span></p>
     <p>📞 رقم التبرع: <span>+964-07702771683</span></p>
     <div class="modal-buttons">
-      <a id="btnPixeldrain" href="#" target="_blank" class="pixeldrain">📥 Pixeldrain</a>
-      <a id="btnMediafire" href="#" target="_blank" class="mediafire">📥 MediaFire</a>
+      <a id="btnGoogleDrive" href="#" target="_blank" class="googledrive">
+        <!-- أيقونة Google Drive SVG -->
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="white">
+          <path d="M4.3 21.3l2.7-4.7h10l2.7 4.7H4.3z"/>
+          <path d="M7 14.7l-2.7 4.7L1.6 15l2.7-4.7h2.7z"/>
+          <path d="M12 6.3l2.7 4.7H7L9.7 6.3H12z"/>
+          <path d="M14.7 6.3l5.4 9.4 2.7-4.7-5.4-9.4-2.7 4.7z"/>
+          <path d="M7 14.7h10l-2.7 4.7H9.7L7 14.7z"/>
+        </svg>
+        Google Drive
+      </a>
+      <a id="btnMediafire" href="#" target="_blank" class="mediafire">
+        <!-- أيقونة MediaFire SVG -->
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="white">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M7 12l3.5 3.5L17 9" stroke="#000" stroke-width="2" fill="none"/>
+        </svg>
+        MediaFire
+      </a>
     </div>
     <button id="closeModal">❌ إغلاق</button>
   </div>
@@ -590,7 +632,7 @@ document.querySelectorAll('.game').forEach(game=>{
     downloadBtn.addEventListener('click', ()=>{
         document.getElementById('modal').style.display='flex';
         document.getElementById('modalTitle').textContent = game.querySelector('h2').innerText;
-        document.getElementById('btnPixeldrain').href = game.dataset.pixeldrain;
+        document.getElementById('btnGoogleDrive').href = game.dataset.googledrive;
         document.getElementById('btnMediafire').href = game.dataset.mediafire;
 
         // زيادة التحميل
