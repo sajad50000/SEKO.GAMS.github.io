@@ -1,288 +1,576 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>ألعاب أندرويد | SAJAD VIP GAMES</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ألعاب أندرويد | SEKO VIP GAMES</title>
+  <!-- خطوط عصرية متناسقة -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Changa:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ========== متغيرات الألوان المتناسقة ========== */
+    :root {
+      --deep-bg: #06060f;
+      --card-bg: rgba(14, 14, 30, 0.75);
+      --neon-cyan: #00f0d4;
+      --electric-blue: #3b6bff;
+      --royal-purple: #9d4edd;
+      --gold: #f0b90b;
+      --soft-white: #f0f4ff;
+      --glass-border: rgba(255, 255, 255, 0.15);
+    }
 
-<style>
-body{
-    margin:0;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background:#0d0d0d;
-    color:#fff;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* NAVBAR */
-nav{
-    background:linear-gradient(90deg,#111,#1a1a1a);
-    display:flex;
-    justify-content:center;
-    gap:25px;
-    padding:15px 30px;
-    box-shadow:0 4px 20px rgba(0,255,213,0.2);
-    position:sticky;
-    top:0;
-    z-index:100;
-}
-nav a{
-    color:#fff;
-    text-decoration:none;
-    font-weight:bold;
-    padding:8px 12px;
-    border-radius:8px;
-    transition:0.3s;
-}
-nav a:hover{
-    background:#00ffd5;
-    color:#000;
-    transform:scale(1.1);
-}
+    body {
+      font-family: 'Cairo', 'Changa', sans-serif;
+      background: radial-gradient(ellipse at 30% 10%, #0a0c1a 0%, #02010a 80%);
+      color: var(--soft-white);
+      overflow-x: hidden;
+      perspective: 1400px;
+      scroll-behavior: smooth;
+    }
 
-/* CONTAINER */
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:30px 15px;
-}
+    /* خلفية ثلاثية الأبعاد متحركة ومتناسقة */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(157, 78, 221, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(0, 240, 212, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(240, 185, 11, 0.08) 0%, transparent 40%);
+      z-index: -2;
+      animation: bgMorph 15s infinite alternate;
+      pointer-events: none;
+    }
 
-h1{
-    margin-bottom:25px;
-    color:#00ffd5;
-    text-shadow:0 0 10px #00ffd5;
-    text-align:center;
-}
+    @keyframes bgMorph {
+      0% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+      100% { opacity: 1; transform: scale(1.15) rotate(1deg); }
+    }
 
-/* SEARCH */
-.search-box{
-    width:100%;
-    padding:12px;
-    border-radius:10px;
-    border:none;
-    font-size:16px;
-    margin-bottom:30px;
-    outline:none;
-}
+    .grid-3d {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(59, 107, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(157, 78, 221, 0.07) 1px, transparent 1px);
+      background-size: 70px 70px;
+      transform: rotateX(60deg) scale(2.5);
+      z-index: -1;
+      animation: gridShift 25s infinite linear;
+      pointer-events: none;
+    }
 
-/* GAME CARD */
-.game{
-    display:flex;
-    align-items:center;
-    background:#1a1a1a;
-    padding:15px;
-    border-radius:15px;
-    margin-bottom:20px;
-    box-shadow:0 0 20px rgba(0,255,213,0.2);
-    transition:0.4s;
-}
-.game:hover{
-    transform:scale(1.03);
-    box-shadow:0 0 35px rgba(0,255,213,0.5);
-}
+    @keyframes gridShift {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 0 140px, 140px 0; }
+    }
 
-/* ICON */
-.game img{
-    width:80px;
-    height:80px;
-    border-radius:15px;
-    object-fit:cover;
-    margin-left:15px;
-    transition:0.3s;
-}
-.game img:hover{
-    transform:scale(1.1);
-}
+    /* ========== NAVBAR متناسق ========== */
+    nav {
+      background: rgba(8, 8, 22, 0.8);
+      backdrop-filter: blur(30px) saturate(200%);
+      -webkit-backdrop-filter: blur(30px) saturate(200%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 40px;
+      box-shadow: 0 20px 50px rgba(0, 240, 212, 0.25), 0 0 0 1px rgba(157, 78, 221, 0.5);
+      position: sticky;
+      top: 12px;
+      margin: 15px 30px;
+      border-radius: 100px;
+      z-index: 1000;
+      transform-style: preserve-3d;
+      animation: navFloat 5s infinite ease-in-out;
+      border: 1px solid var(--neon-cyan);
+      gap: 25px;
+      flex-wrap: wrap;
+    }
 
-/* INFO */
-.game-info{
-    flex:1;
-}
-.game-info h2{
-    margin:0;
-    font-size:22px;
-    color:#00ffd5;
-}
-.game-info span{
-    color:#aaa;
-    font-size:14px;
-}
-.downloads-count{
-    color:#00ffd5;
-    font-size:14px;
-    margin-top:5px;
-}
+    @keyframes navFloat {
+      0%, 100% { transform: translateY(0) rotateX(0.3deg); }
+      50% { transform: translateY(-6px) rotateX(-0.3deg); }
+    }
 
-/* DOWNLOAD BUTTON */
-.download{
-    background:#00ffd5;
-    color:#000;
-    text-decoration:none;
-    padding:10px 18px;
-    border-radius:10px;
-    font-weight:bold;
-    margin-left:15px;
-    cursor:pointer;
-    transition:0.3s;
-}
-.download:hover{
-    background:#00cbb0;
-    transform:scale(1.05);
-}
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 40px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(0,240,212,0.15));
+      border: 1px solid transparent;
+      text-shadow: 0 0 8px var(--neon-cyan);
+      position: relative;
+      transform-style: preserve-3d;
+    }
 
-/* MODAL */
-#modal{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.85);
-    justify-content:center;
-    align-items:center;
-    z-index:1000;
-}
-#modalContent{
-    background:#1a1a1a;
-    padding:30px;
-    border-radius:20px;
-    width:420px;
-    text-align:center;
-    box-shadow:0 0 30px rgba(0,255,213,0.5);
-    animation:modalFade 0.3s ease-in-out;
-}
-@keyframes modalFade{
-    from{opacity:0; transform:scale(0.9);}
-    to{opacity:1; transform:scale(1);}
-}
-#modalContent h2{
-    margin-top:0;
-    margin-bottom:12px;
-    color:#00ffd5;
-}
-#modalContent p{
-    margin:6px 0;
-    color:#ccc;
-}
-.modal-buttons{
-    margin-top:20px;
-    display:flex;
-    justify-content:space-around;
-    flex-wrap:wrap;
-    gap:12px;
-}
-.modal-buttons a{
-    padding:12px 18px;
-    border-radius:12px;
-    text-decoration:none;
-    font-weight:bold;
-    color:#000;
-    transition:0.3s;
-}
-.modal-buttons a.pixeldrain{
-    background:#00ffd5;
-}
-.modal-buttons a.mediafire{
-    background:#ff9900;
-}
-.modal-buttons a:hover{
-    opacity:0.9;
-    transform:scale(1.05);
-}
-#closeModal{
-    margin-top:20px;
-    padding:10px 16px;
-    background:#111;
-    color:#fff;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    transition:0.3s;
-}
-#closeModal:hover{
-    background:#00ffd5;
-    color:#000;
-}
-</style>
+    nav a::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 40px;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--electric-blue));
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.4s;
+      filter: blur(12px);
+    }
+
+    nav a:hover {
+      color: #000;
+      background: var(--gold);
+      border-color: var(--gold);
+      transform: translateZ(30px) scale(1.15);
+      box-shadow: 0 0 50px var(--gold), 0 20px 30px rgba(0,0,0,0.7);
+      text-shadow: none;
+    }
+
+    nav a:hover::before {
+      opacity: 0.8;
+    }
+
+    /* ========== CONTAINER ========== */
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 3.5rem;
+      font-weight: 900;
+      text-align: center;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--electric-blue), var(--royal-purple), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 40px rgba(157, 78, 221, 0.8));
+      animation: titleGlow 3s infinite alternate;
+      letter-spacing: 2px;
+      transform-style: preserve-3d;
+      transform: translateZ(30px);
+    }
+
+    @keyframes titleGlow {
+      0% { filter: drop-shadow(0 0 30px var(--royal-purple)); }
+      100% { filter: drop-shadow(0 0 70px var(--electric-blue)); }
+    }
+
+    /* ========== SEARCH BOX ========== */
+    .search-box {
+      width: 100%;
+      padding: 16px 24px;
+      border-radius: 60px;
+      border: 2px solid rgba(0, 240, 212, 0.4);
+      font-size: 1.1rem;
+      margin-bottom: 35px;
+      outline: none;
+      background: rgba(10, 10, 25, 0.7);
+      backdrop-filter: blur(20px);
+      color: #fff;
+      transition: all 0.4s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .search-box:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 45px rgba(240, 185, 11, 0.5), 0 15px 35px rgba(0,0,0,0.6);
+      transform: translateZ(20px);
+      background: rgba(15, 15, 35, 0.85);
+    }
+
+    .search-box::placeholder {
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ========== GAME CARD 3D ========== */
+    .game {
+      display: flex;
+      align-items: center;
+      background: var(--card-bg);
+      backdrop-filter: blur(18px);
+      padding: 20px 25px;
+      border-radius: 35px;
+      margin-bottom: 25px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(157, 78, 221, 0.5);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+      transform: rotateX(1deg) translateZ(0);
+      border: 1px solid rgba(0, 240, 212, 0.3);
+      gap: 20px;
+      position: relative;
+    }
+
+    .game:hover {
+      transform: rotateX(0deg) translateZ(45px) scale(1.04);
+      box-shadow: 0 50px 80px rgba(157, 78, 221, 0.7), 0 0 0 2px var(--gold);
+      background: rgba(20, 20, 40, 0.9);
+    }
+
+    /* ICON */
+    .game img {
+      width: 90px;
+      height: 90px;
+      border-radius: 25px;
+      object-fit: cover;
+      transition: 0.4s;
+      border: 2px solid var(--electric-blue);
+      box-shadow: 0 0 25px rgba(59, 107, 255, 0.5);
+    }
+
+    .game:hover img {
+      transform: scale(1.12) translateZ(20px);
+      border-color: var(--gold);
+      box-shadow: 0 0 40px var(--gold);
+    }
+
+    /* INFO */
+    .game-info {
+      flex: 1;
+    }
+
+    .game-info h2 {
+      margin: 0 0 5px 0;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--gold);
+      text-shadow: 0 0 15px rgba(240, 185, 11, 0.5);
+    }
+
+    .game-info span {
+      color: #b0c8ff;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .downloads-count {
+      color: var(--neon-cyan);
+      font-size: 0.95rem;
+      margin-top: 6px;
+      font-weight: 700;
+      text-shadow: 0 0 10px var(--neon-cyan);
+    }
+
+    /* DOWNLOAD BUTTON */
+    .download {
+      background: linear-gradient(135deg, var(--neon-cyan), var(--electric-blue));
+      color: #000;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 900;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.4s;
+      box-shadow: 0 10px 30px rgba(0, 240, 212, 0.5);
+      border: none;
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+      transform-style: preserve-3d;
+    }
+
+    .download:hover {
+      background: var(--gold);
+      transform: translateZ(25px) scale(1.08);
+      box-shadow: 0 20px 45px var(--gold);
+    }
+
+    /* ========== MODAL 3D ========== */
+    #modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      perspective: 1000px;
+    }
+
+    #modalContent {
+      background: rgba(15, 15, 35, 0.95);
+      backdrop-filter: blur(35px);
+      padding: 35px 30px;
+      border-radius: 50px;
+      width: 460px;
+      max-width: 90%;
+      text-align: center;
+      box-shadow: 0 0 80px rgba(157, 78, 221, 0.8), 0 0 0 2px var(--neon-cyan);
+      animation: modalFade 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-style: preserve-3d;
+      transform: translateZ(40px);
+    }
+
+    @keyframes modalFade {
+      from { opacity: 0; transform: scale(0.8) translateZ(-50px); }
+      to { opacity: 1; transform: scale(1) translateZ(40px); }
+    }
+
+    #modalContent h2 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 2.2rem;
+      color: var(--gold);
+      text-shadow: 0 0 25px var(--gold);
+    }
+
+    #modalContent p {
+      margin: 8px 0;
+      color: #cfd8ff;
+      font-size: 1rem;
+    }
+
+    #modalContent span {
+      color: var(--neon-cyan);
+      font-weight: bold;
+    }
+
+    .modal-buttons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .modal-buttons a {
+      padding: 14px 28px;
+      border-radius: 35px;
+      text-decoration: none;
+      font-weight: 900;
+      color: #fff;
+      transition: all 0.4s;
+      font-size: 1rem;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      transform-style: preserve-3d;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* زر Google Drive بتدرج ألوان جوجل */
+    .modal-buttons a.googledrive {
+      background: linear-gradient(135deg, #4285f4, #0f9d58, #f4b400);
+      background-size: 200% 200%;
+      animation: googleShine 3s infinite alternate;
+    }
+
+    @keyframes googleShine {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .modal-buttons a.mediafire {
+      background: linear-gradient(135deg, #ff9900, #ff5500);
+    }
+
+    .modal-buttons a:hover {
+      transform: translateZ(30px) scale(1.1);
+      filter: brightness(1.2);
+    }
+
+    /* أيقونات SVG داخل الأزرار */
+    .btn-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    #closeModal {
+      margin-top: 25px;
+      padding: 12px 30px;
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+    }
+
+    #closeModal:hover {
+      background: #ff4d6d;
+      border-color: #ff4d6d;
+      box-shadow: 0 0 30px #ff4d6d;
+      transform: translateZ(15px);
+    }
+
+    /* ========== إعلانات متناسقة ========== */
+    .ad-wrapper {
+      background: rgba(10, 10, 22, 0.6);
+      backdrop-filter: blur(15px);
+      border-radius: 30px;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 400px;
+      border: 1px solid rgba(157, 78, 221, 0.6);
+      box-shadow: 0 0 40px rgba(157, 78, 221, 0.35);
+      text-align: center;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 12px;
+        border-radius: 40px;
+        margin: 10px 15px;
+        padding: 15px 20px;
+      }
+
+      .game {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 25px 20px;
+      }
+
+      .game img {
+        width: 80px;
+        height: 80px;
+      }
+
+      .download {
+        width: 100%;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
+<!-- الشبكة الثلاثية الأبعاد -->
+<div class="grid-3d"></div>
+
+<!-- NAVBAR -->
 <nav>
-<a href="index.html">الرئيسية</a>
-<a href="android.html">أندرويد</a>
-<a href="windows.html">ويندوز</a>
-<a href="about.html">عن الموقع</a>
+  <a href="index.html">🏠 الرئيسية</a>
+  <a href="android.html">📱 أندرويد</a>
+  <a href="windows.html">💻 ويندوز</a>
+  <a href="about.html">ℹ️ عن الموقع</a>
 </nav>
 
+<!-- المحتوى الرئيسي -->
 <div class="container">
-<h1>📱 ألعاب أندرويد</h1>
+  <h1>📱 ألعاب أندرويد</h1>
 
-<input type="text" class="search-box" placeholder="🔍 ابحث عن لعبة..." onkeyup="searchGame()">
+  <input type="text" class="search-box" placeholder="🔍 ابحث عن لعبة..." onkeyup="searchGame()">
 
-<!-- GAME ITEMS -->
-<div class="game" data-gameid="android1" 
-     data-pixeldrain="https://pixeldrain.com/u/PsGMq8uB" 
-     data-mediafire="https://download1325.mediafire.com/8w74g3zlrkqgVS_25iZ4e2ojKYNH5b4o3pPa_E5pTa5qFnc2pfW0yudw8HHqxuCa8DvtcFoMckqLjJv_x_ugAeUUlJE129y6xqMTSxzP9elAs6lIOi8cP28FckkCebdTo3qF4cyjgNoVaZ3SkrGbrAeLrYl0XByFubaOYwvt8Rrt/ibldl7ha5ptiu6n/%D9%85%D8%BA%D8%A7%D9%85%D8%B1%D8%A9+%D8%A7%D9%84%D8%A3%D9%84%D8%BA%D8%A7%D8%B2.apk">
-<img src="images/مغامرة الألغاز.png">
-<div class="game-info">
-<h2>مغامرة الألغاز</h2>
-<span>الحجم: 476 MB</span>
-<div class="downloads-count" id="count-android1">تحميلات: 0</div>
-</div>
-<div class="download">تحميل</div>
-</div>
+  <!-- GAME ITEMS -->
 
-<div class="game" data-gameid="android2" 
-     data-pixeldrain="https://pixeldrain.com/u/MiGohqQn" 
-     data-mediafire="https://download1523.mediafire.com/vg3hgbdc7tfgbMMjl3OYm1G7rR52Z_IsxgCeVHendNlEEkdmK639hjQ7Dt0kyVhs_0iqtEDQ6isZjyCj1ap5ut73jYthSwOVTrGc-wuuo2c09M_PxlMbSH44N85-MYXNkH4FwXKgX6j2x1bSHKvCr063XF9plsN4SuQwM9Bh-JsM/g44r8g02vqep8zd/%D9%86%D8%A8%D8%B6+%D8%A7%D9%84%D8%AD%D8%B1%D9%83%D9%87.apk">
-<img src="images/نبض الحركه.png">
-<div class="game-info">
-<h2>نبض الحركه</h2>
-<span>الحجم: 265 MB</span>
-<div class="downloads-count" id="count-android2">تحميلات: 0</div>
-</div>
-<div class="download">تحميل</div>
-</div>
+  <!-- لعبة 1: مغامرة الألغاز -->
+  <div class="game" data-gameid="android1" 
+       data-googledrive="https://drive.google.com/file/d/XXXXXXXXX/view" 
+       data-mediafire="https://download1325.mediafire.com/8w74g3zlrkqgVS_25iZ4e2ojKYNH5b4o3pPa_E5pTa5qFnc2pfW0yudw8HHqxuCa8DvtcFoMckqLjJv_x_ugAeUUlJE129y6xqMTSxzP9elAs6lIOi8cP28FckkCebdTo3qF4cyjgNoVaZ3SkrGbrAeLrYl0XByFubaOYwvt8Rrt/ibldl7ha5ptiu6n/%D9%85%D8%BA%D8%A7%D9%85%D8%B1%D8%A9+%D8%A7%D9%84%D8%A3%D9%84%D8%BA%D8%A7%D8%B2.apk">
+    <img src="images/مغامرة الألغاز.png" alt="مغامرة الألغاز">
+    <div class="game-info">
+      <h2>🧩 مغامرة الألغاز</h2>
+      <span>📦 الحجم: 476 MB</span>
+      <div class="downloads-count" id="count-android1">⬇️ تحميلات: 0</div>
+    </div>
+    <button class="download">تحميل</button>
+  </div>
 
- <div class="game" data-gameid="android3" 
-     data-pixeldrain="https://pixeldrain.com/u/VdY6dXzN" 
-     data-mediafire="https://download856.mediafire.com/l9r5jkwkk3sgg9Cv4VWvf2tsp9V47YeaeQ4b0sSkzqKKi49MQDbd7tqxzPzeA96BDbtznF9qh3ulw8XpHPedSS07tWwMGo6W2hDbGF7BtvN7tyHPiWFy7svgtBwoAGx2S1s05WiSXp3Zw58PjO6R3sHuRbPqggoimWqgBVbkTnWb/sj6i67okdlwwxd9/%D9%85%D9%85%D8%B1+%D8%A7%D9%84%D9%85%D9%88%D8%AA.apk">
-<img src="images/ممر الموت.png">
-<div class="game-info">
-<h2>ممر الموت</h2>
-<span>الحجم: 446 MB</span>
-<div class="downloads-count" id="count-android3">تحميلات: 0</div>
-</div>
-<div class="download">تحميل</div>
-</div>
+  <!-- لعبة 2: نبض الحركة -->
+  <div class="game" data-gameid="android2" 
+       data-googledrive="https://drive.google.com/file/d/YYYYYYYYY/view" 
+       data-mediafire="https://download1523.mediafire.com/vg3hgbdc7tfgbMMjl3OYm1G7rR52Z_IsxgCeVHendNlEEkdmK639hjQ7Dt0kyVhs_0iqtEDQ6isZjyCj1ap5ut73jYthSwOVTrGc-wuuo2c09M_PxlMbSH44N85-MYXNkH4FwXKgX6j2x1bSHKvCr063XF9plsN4SuQwM9Bh-JsM/g44r8g02vqep8zd/%D9%86%D8%A8%D8%B6+%D8%A7%D9%84%D8%AD%D8%B1%D9%83%D9%87.apk">
+    <img src="images/نبض الحركه.png" alt="نبض الحركة">
+    <div class="game-info">
+      <h2>⚡ نبض الحركة</h2>
+      <span>📦 الحجم: 265 MB</span>
+      <div class="downloads-count" id="count-android2">⬇️ تحميلات: 0</div>
+    </div>
+    <button class="download">تحميل</button>
+  </div>
 
-     <div class="game" data-gameid="android4" 
-     data-pixeldrain="0000000" 
-     data-mediafire="https://download1523.mediafire.com/72xn1hzf1dkgohzmU19Nz6KiGeY8HXULXEZtDe3zfN4iKY5hDf36snK26IP_xTYjnrsncPBemVoEfJdwc2Oi0i3CHTlNFml-LfV6HlxMcFpen4jki34-KKU94GH1B5sJypf659RgntktXUFvLZzQiHXhcO6HPeqZSWyn3vt5QLq3/dvx5w9xgs77pn5c/GAPS+OF+DARKNESS.zip">
-<img src="images/GAPS OF DARKNESS.png">
-<div class="game-info">
-<h2>GAPS OF DARKNESS</h2>
-<span>الحجم: 540 MB</span>
-<div class="downloads-count" id="count-android3">تحميلات: 0</div>
-</div>
-<div class="download">تحميل</div>
-</div>
+  <!-- لعبة 3: ممر الموت -->
+  <div class="game" data-gameid="android3" 
+       data-googledrive="https://drive.google.com/file/d/ZZZZZZZZZ/view" 
+       data-mediafire="https://download856.mediafire.com/l9r5jkwkk3sgg9Cv4VWvf2tsp9V47YeaeQ4b0sSkzqKKi49MQDbd7tqxzPzeA96BDbtznF9qh3ulw8XpHPedSS07tWwMGo6W2hDbGF7BtvN7tyHPiWFy7svgtBwoAGx2S1s05WiSXp3Zw58PjO6R3sHuRbPqggoimWqgBVbkTnWb/sj6i67okdlwwxd9/%D9%85%D9%85%D8%B1+%D8%A7%D9%84%D9%85%D9%88%D8%AA.apk">
+    <img src="images/ممر الموت.png" alt="ممر الموت">
+    <div class="game-info">
+      <h2>💀 ممر الموت</h2>
+      <span>📦 الحجم: 446 MB</span>
+      <div class="downloads-count" id="count-android3">⬇️ تحميلات: 0</div>
+    </div>
+    <button class="download">تحميل</button>
+  </div>
+
+  <!-- لعبة 4: GAPS OF DARKNESS -->
+  <div class="game" data-gameid="android4" 
+       data-googledrive="https://drive.google.com/file/d/WWWWWWWWW/view" 
+       data-mediafire="https://download1523.mediafire.com/72xn1hzf1dkgohzmU19Nz6KiGeY8HXULXEZtDe3zfN4iKY5hDf36snK26IP_xTYjnrsncPBemVoEfJdwc2Oi0i3CHTlNFml-LfV6HlxMcFpen4jki34-KKU94GH1B5sJypf659RgntktXUFvLZzQiHXhcO6HPeqZSWyn3vt5QLq3/dvx5w9xgs77pn5c/GAPS+OF+DARKNESS.zip">
+    <img src="images/GAPS OF DARKNESS.png" alt="GAPS OF DARKNESS">
+    <div class="game-info">
+      <h2>👻 GAPS OF DARKNESS</h2>
+      <span>📦 الحجم: 540 MB</span>
+      <div class="downloads-count" id="count-android4">⬇️ تحميلات: 0</div>
+    </div>
+    <button class="download">تحميل</button>
+  </div>
 
 </div>
 
 <!-- MODAL -->
 <div id="modal">
-    <div id="modalContent">
-        <h2 id="modalTitle"></h2>
-        <p>المطور: <span id="developer">SEKO GAMS</span></p>
-        <p>طريقة التبرع: <span id="developer">زين كاش</span></p>
-        <p>رقم التبرع: <span id="donateNumber">+964-7702771683</span></p>
-        <div class="modal-buttons">
-            <a id="btnPixeldrain" href="#" target="_blank" class="pixeldrain">Pixeldrain</a>
-            <a id="btnMediafire" href="#" target="_blank" class="mediafire">MediaFire</a>
-        </div>
-        <button id="closeModal">إغلاق</button>
+  <div id="modalContent">
+    <h2 id="modalTitle"></h2>
+    <p>👨‍💻 المطور: <span>SEKO GAMES</span></p>
+    <p>💰 طريقة التبرع: <span>زين كاش</span></p>
+    <p>📞 رقم التبرع: <span>+964-07702771683</span></p>
+    <div class="modal-buttons">
+      <a id="btnGoogleDrive" href="#" target="_blank" class="googledrive">
+        <!-- أيقونة Google Drive SVG -->
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="white">
+          <path d="M4.3 21.3l2.7-4.7h10l2.7 4.7H4.3z"/>
+          <path d="M7 14.7l-2.7 4.7L1.6 15l2.7-4.7h2.7z"/>
+          <path d="M12 6.3l2.7 4.7H7L9.7 6.3H12z"/>
+          <path d="M14.7 6.3l5.4 9.4 2.7-4.7-5.4-9.4-2.7 4.7z"/>
+          <path d="M7 14.7h10l-2.7 4.7H9.7L7 14.7z"/>
+        </svg>
+        Google Drive
+      </a>
+      <a id="btnMediafire" href="#" target="_blank" class="mediafire">
+        <!-- أيقونة MediaFire SVG -->
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="white">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M7 12l3.5 3.5L17 9" stroke="#000" stroke-width="2" fill="none"/>
+        </svg>
+        MediaFire
+      </a>
     </div>
+    <button id="closeModal">❌ إغلاق</button>
+  </div>
 </div>
 
 <script>
@@ -305,25 +593,35 @@ document.querySelectorAll('.game').forEach(game=>{
     const downloadBtn = game.querySelector('.download');
 
     // جلب العدد عند تحميل الصفحة
-    fetch(`${API_URL}?action=get&game=${gameID}`)
-        .then(r=>r.text())
-        .then(count=>{
-            countEl.textContent = "تحميلات: " + count;
-        });
+    if(countEl) {
+        fetch(`${API_URL}?action=get&game=${gameID}`)
+            .then(r=>r.text())
+            .then(count=>{
+                countEl.textContent = "⬇️ تحميلات: " + count;
+            })
+            .catch(()=>{
+                countEl.textContent = "⬇️ تحميلات: 0";
+            });
+    }
 
     // عند الضغط على زر التحميل (يفتح المودال)
     downloadBtn.addEventListener('click', ()=>{
         document.getElementById('modal').style.display='flex';
         document.getElementById('modalTitle').textContent = game.querySelector('h2').innerText;
-        document.getElementById('btnPixeldrain').href = game.dataset.pixeldrain;
+        document.getElementById('btnGoogleDrive').href = game.dataset.googledrive;
         document.getElementById('btnMediafire').href = game.dataset.mediafire;
 
         // زيادة التحميل
-        fetch(`${API_URL}?action=increment&game=${gameID}`)
-            .then(r=>r.text())
-            .then(count=>{
-                countEl.textContent = "تحميلات: " + count;
-            });
+        if(countEl) {
+            fetch(`${API_URL}?action=increment&game=${gameID}`)
+                .then(r=>r.text())
+                .then(count=>{
+                    countEl.textContent = "⬇️ تحميلات: " + count;
+                })
+                .catch(()=>{
+                    // في حالة فشل الاتصال، لا تحدث شيئاً
+                });
+        }
     });
 });
 
@@ -334,7 +632,7 @@ document.getElementById('closeModal').addEventListener('click', ()=>{
 
 // إغلاق المودال عند الضغط خارج المحتوى
 document.getElementById('modal').addEventListener('click', e=>{
-    if(e.target==document.getElementById('modal')){
+    if(e.target === document.getElementById('modal')){
         document.getElementById('modal').style.display='none';
     }
 });
