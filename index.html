@@ -4,12 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>SEKO GAMES VIP | سيكو جيمز</title>
-  <!-- خطوط عصرية -->
+  <!-- خطوط عصرية متناسقة -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Changa:wght@500;700;800&display=swap" rel="stylesheet">
   <style>
-    /* إعادة ضبط عامة */
+    /* ========== إعادة ضبط وتأسيس الألوان ========== */
+    :root {
+      --deep-bg: #06060f;
+      --card-bg: rgba(14, 14, 30, 0.75);
+      --neon-cyan: #00f0d4;
+      --electric-blue: #3b6bff;
+      --royal-purple: #9d4edd;
+      --gold: #f0b90b;
+      --soft-white: #f0f4ff;
+      --glass-border: rgba(255, 255, 255, 0.15);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -18,14 +29,14 @@
 
     body {
       font-family: 'Cairo', 'Changa', sans-serif;
-      background: radial-gradient(circle at 20% 10%, #0a0f1e, #03050a);
-      color: #fff;
+      background: radial-gradient(ellipse at 30% 10%, #0a0c1a 0%, #02010a 80%);
+      color: var(--soft-white);
       overflow-x: hidden;
-      perspective: 1200px;
+      perspective: 1400px;
       scroll-behavior: smooth;
     }
 
-    /* خلفية متحركة ثلاثية الأبعاد */
+    /* خلفية ثلاثية الأبعاد متحركة ومتناسقة */
     body::before {
       content: "";
       position: fixed;
@@ -34,20 +45,19 @@
       width: 100%;
       height: 100%;
       background: 
-        radial-gradient(ellipse at 30% 20%, rgba(0, 255, 200, 0.08) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 70%, rgba(180, 0, 255, 0.1) 0%, transparent 60%),
-        radial-gradient(ellipse at 10% 80%, rgba(0, 180, 255, 0.12) 0%, transparent 50%);
+        radial-gradient(circle at 20% 30%, rgba(157, 78, 221, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(0, 240, 212, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(240, 185, 11, 0.08) 0%, transparent 40%);
       z-index: -2;
-      animation: bgPulse3D 12s infinite alternate ease-in-out;
+      animation: bgMorph 15s infinite alternate;
+      pointer-events: none;
     }
 
-    @keyframes bgPulse3D {
-      0% { opacity: 0.7; transform: scale(1) rotate3d(1, 0, 0, 0deg); }
-      50% { opacity: 1; transform: scale(1.1) rotate3d(0, 1, 0, 2deg); }
-      100% { opacity: 0.8; transform: scale(1) rotate3d(1, 1, 0, -2deg); }
+    @keyframes bgMorph {
+      0% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+      100% { opacity: 1; transform: scale(1.15) rotate(1deg); }
     }
 
-    /* شبكة ليزرية ثلاثية الأبعاد */
     .grid-3d {
       position: fixed;
       top: 0;
@@ -55,347 +65,325 @@
       width: 100%;
       height: 100%;
       background-image: 
-        linear-gradient(rgba(0, 255, 213, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 213, 0.08) 1px, transparent 1px);
-      background-size: 60px 60px;
-      transform: rotateX(55deg) scale(2.2);
+        linear-gradient(rgba(59, 107, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(157, 78, 221, 0.07) 1px, transparent 1px);
+      background-size: 70px 70px;
+      transform: rotateX(60deg) scale(2.5);
       z-index: -1;
-      animation: gridFlow 20s infinite linear;
+      animation: gridShift 25s infinite linear;
       pointer-events: none;
     }
 
-    @keyframes gridFlow {
+    @keyframes gridShift {
       0% { background-position: 0 0, 0 0; }
-      100% { background-position: 0 120px, 120px 0; }
+      100% { background-position: 0 140px, 140px 0; }
     }
 
-    /* ========== NAVBAR 3D ========== */
+    /* ========== NAVBAR متناسق ========== */
     nav {
-      background: rgba(8, 8, 18, 0.8);
-      backdrop-filter: blur(25px) saturate(180%);
-      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      background: rgba(8, 8, 22, 0.8);
+      backdrop-filter: blur(30px) saturate(200%);
+      -webkit-backdrop-filter: blur(30px) saturate(200%);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 35px;
-      box-shadow: 0 15px 40px rgba(0, 255, 200, 0.3), 0 0 0 1px rgba(0, 255, 200, 0.25);
+      padding: 14px 40px;
+      box-shadow: 0 20px 50px rgba(0, 240, 212, 0.25), 0 0 0 1px rgba(157, 78, 221, 0.5);
       position: sticky;
-      top: 10px;
-      margin: 15px 25px;
-      border-radius: 80px;
+      top: 12px;
+      margin: 15px 30px;
+      border-radius: 100px;
       z-index: 1000;
       transform-style: preserve-3d;
-      animation: navFloat 4s infinite ease-in-out;
-      border: 1px solid rgba(0, 255, 213, 0.4);
+      animation: navFloat 5s infinite ease-in-out;
+      border: 1px solid var(--neon-cyan);
     }
 
     @keyframes navFloat {
-      0%, 100% { transform: translateY(0) rotateX(0.5deg) scale(1); }
-      50% { transform: translateY(-5px) rotateX(-0.5deg) scale(1.01); }
+      0%, 100% { transform: translateY(0) rotateX(0.3deg); }
+      50% { transform: translateY(-6px) rotateX(-0.3deg); }
     }
 
     nav .links {
       display: flex;
-      gap: 30px;
+      gap: 25px;
+      flex-wrap: wrap;
     }
 
     nav a {
       color: #fff;
       text-decoration: none;
       font-weight: 700;
-      font-size: 1rem;
-      padding: 10px 20px;
-      border-radius: 50px;
+      padding: 10px 22px;
+      border-radius: 40px;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      background: rgba(255, 255, 255, 0.02);
-      letter-spacing: 0.5px;
+      background: rgba(255, 255, 255, 0.03);
       position: relative;
-      transform-style: preserve-3d;
-      text-shadow: 0 0 8px rgba(0,255,200,0.5);
-    }
-
-    nav a::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50px;
-      background: linear-gradient(135deg, #00ffd5, #0088ff);
-      opacity: 0;
-      z-index: -1;
-      transition: opacity 0.4s;
-      filter: blur(12px);
+      text-shadow: 0 0 8px var(--neon-cyan);
+      background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(0,240,212,0.15));
+      border: 1px solid transparent;
     }
 
     nav a:hover {
       color: #000;
-      background: #00ffd5;
-      transform: translateZ(25px) scale(1.1);
-      box-shadow: 0 0 40px #00ffd5, 0 20px 30px rgba(0,0,0,0.6);
+      background: var(--gold);
+      border-color: var(--gold);
+      transform: translateZ(30px) scale(1.15);
+      box-shadow: 0 0 50px var(--gold), 0 20px 30px rgba(0,0,0,0.7);
       text-shadow: none;
     }
 
-    nav a:hover::before {
-      opacity: 0.8;
-    }
-
-    /* USER MENU */
     #userMenu {
       display: none;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       cursor: pointer;
-      position: relative;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 6px 18px 6px 12px;
+      background: rgba(0,0,0,0.5);
+      padding: 7px 22px 7px 14px;
       border-radius: 60px;
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(0, 255, 213, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--electric-blue);
       transition: 0.3s;
       transform-style: preserve-3d;
     }
 
     #userMenu:hover {
-      box-shadow: 0 0 35px #00ffd5;
-      transform: translateZ(15px);
+      box-shadow: 0 0 45px var(--electric-blue);
+      transform: translateZ(20px);
     }
 
     #userMenu img {
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      border: 2px solid #00ffd5;
-      box-shadow: 0 0 25px #00ffd5;
-      transition: 0.3s;
+      border: 2px solid var(--royal-purple);
+      box-shadow: 0 0 30px var(--royal-purple);
     }
 
     #userMenu span {
       font-weight: 800;
-      color: #00ffd5;
-      text-shadow: 0 0 10px #00ffd5;
+      color: var(--gold);
+      text-shadow: 0 0 10px var(--gold);
     }
 
     #dropdown {
       position: absolute;
-      top: 70px;
+      top: 75px;
       left: 0;
-      background: rgba(10, 10, 25, 0.95);
-      backdrop-filter: blur(25px);
-      border-radius: 28px;
-      padding: 12px 20px;
+      background: rgba(8, 8, 28, 0.95);
+      backdrop-filter: blur(35px);
+      border-radius: 30px;
+      padding: 15px 25px;
       display: none;
-      box-shadow: 0 30px 50px rgba(0, 255, 213, 0.6);
-      border: 1px solid #00ffd5;
-      transform: translateZ(40px);
+      box-shadow: 0 30px 55px rgba(157, 78, 221, 0.7);
+      border: 1px solid var(--royal-purple);
+      transform: translateZ(50px);
       animation: dropPop 0.3s ease;
     }
 
     @keyframes dropPop {
-      0% { opacity: 0; transform: translateY(-20px) translateZ(-20px); }
-      100% { opacity: 1; transform: translateY(0) translateZ(40px); }
+      0% { opacity: 0; transform: translateY(-15px) translateZ(-10px); }
+      100% { opacity: 1; transform: translateY(0) translateZ(50px); }
     }
 
     #dropdown button {
       background: transparent;
       border: none;
-      color: white;
+      color: #fff;
       font-weight: bold;
       cursor: pointer;
       padding: 8px 0;
       transition: 0.3s;
-      text-shadow: 0 0 5px white;
     }
 
     #dropdown button:hover {
       color: #ff4d6d;
-      transform: translateX(-5px);
     }
 
-    /* ========== HEADER 3D ========== */
+    /* ========== HEADER ========== */
     header {
       text-align: center;
-      padding: 90px 20px 70px;
-      position: relative;
+      padding: 80px 20px 50px;
       transform-style: preserve-3d;
     }
 
     header h1 {
-      font-size: 5.5rem;
+      font-size: 5.8rem;
       font-weight: 900;
-      margin-bottom: 15px;
-      background: linear-gradient(135deg, #00ffd5, #00a6ff, #d400ff);
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--electric-blue), var(--royal-purple), var(--gold));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: none;
-      animation: titleGlow3D 3s infinite alternate, floatText 5s infinite ease-in-out;
-      letter-spacing: 3px;
-      transform: translateZ(50px);
-      filter: drop-shadow(0 0 30px rgba(0,255,200,0.7));
+      filter: drop-shadow(0 0 45px rgba(157, 78, 221, 0.8));
+      animation: titleGlow 3s infinite alternate, floatText 6s infinite ease-in-out;
+      letter-spacing: 4px;
     }
 
-    @keyframes titleGlow3D {
-      0% { filter: drop-shadow(0 0 25px #00ffd5); }
-      100% { filter: drop-shadow(0 0 60px #bf00ff); }
+    @keyframes titleGlow {
+      0% { filter: drop-shadow(0 0 30px #9d4edd); }
+      100% { filter: drop-shadow(0 0 70px #3b6bff); }
     }
 
     @keyframes floatText {
-      0%, 100% { transform: translateZ(40px) translateY(0); }
-      50% { transform: translateZ(70px) translateY(-12px); }
+      0%, 100% { transform: translateZ(40px); }
+      50% { transform: translateZ(80px) translateY(-10px); }
     }
 
     header p {
-      color: #b0f0ff;
-      font-size: 1.8rem;
-      text-shadow: 0 0 20px rgba(0,255,213,0.6);
-      transform: translateZ(30px);
-      font-weight: 600;
+      color: #d1e0ff;
+      font-size: 1.9rem;
+      text-shadow: 0 0 25px rgba(0,240,212,0.7);
     }
 
-    /* ========== CONTAINER بطاقات 3D ========== */
+    /* ========== بطاقات الألعاب ========== */
     .container {
-      max-width: 1400px;
+      max-width: 1450px;
       margin: auto;
-      padding: 30px 20px 60px;
+      padding: 30px 20px 70px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 45px;
-      perspective: 1800px;
+      perspective: 1600px;
     }
 
     .article {
-      background: rgba(18, 18, 28, 0.7);
+      background: var(--card-bg);
       backdrop-filter: blur(18px);
-      border-radius: 45px;
+      border-radius: 50px;
       overflow: hidden;
-      box-shadow: 0 35px 60px rgba(0, 255, 213, 0.25), 0 0 0 1px rgba(0, 255, 200, 0.4);
+      box-shadow: 0 35px 55px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(157, 78, 221, 0.5);
       cursor: pointer;
       transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
       display: flex;
       flex-direction: column;
       transform-style: preserve-3d;
-      transform: rotateX(3deg) rotateY(0deg) translateZ(0);
-      position: relative;
+      transform: rotateX(2deg) translateZ(0);
+      border: 1px solid rgba(0, 240, 212, 0.3);
     }
 
     .article:hover {
-      transform: rotateX(0deg) rotateY(0deg) translateZ(60px) scale(1.05);
-      box-shadow: 0 60px 90px rgba(0, 255, 213, 0.7), 0 0 0 2px #00ffd5;
-      background: rgba(20, 20, 35, 0.85);
+      transform: rotateX(0deg) translateZ(65px) scale(1.06);
+      box-shadow: 0 70px 90px rgba(157, 78, 221, 0.7), 0 0 0 2px var(--gold);
+      background: rgba(20, 20, 40, 0.9);
     }
 
     .article img {
       width: 100%;
-      height: 260px;
+      height: 270px;
       object-fit: cover;
+      border-bottom: 3px solid var(--electric-blue);
       transition: 0.5s;
-      border-bottom: 2px solid #00ffd5;
     }
 
     .article:hover img {
-      transform: scale(1.1) translateZ(25px);
-      filter: brightness(1.2) drop-shadow(0 10px 15px black);
+      transform: scale(1.12) translateZ(30px);
+      filter: brightness(1.2) drop-shadow(0 15px 20px #000);
     }
 
     .article-content {
-      padding: 25px 20px;
-      transform: translateZ(20px);
-      background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,20,30,0.6));
+      padding: 30px 20px;
+      background: linear-gradient(180deg, rgba(59,107,255,0.1), rgba(157,78,221,0.3));
     }
 
     .article-content h2 {
-      margin: 0 0 10px;
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 800;
-      color: #00ffd5;
-      text-shadow: 0 0 18px #00ffd5;
-      letter-spacing: 1px;
+      color: var(--gold);
+      text-shadow: 0 0 20px var(--gold);
+      margin-bottom: 10px;
     }
 
     .article-content p {
-      color: #ddd;
-      font-size: 1rem;
-      line-height: 1.8;
+      color: #e0e7ff;
+      font-size: 1.1rem;
     }
 
-    /* LOGIN BOX 3D */
+    /* ========== LOGIN ========== */
     #loginBox {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at center, #0b1424, #010101);
-      perspective: 1000px;
+      background: radial-gradient(circle at center, #0e1125, #010101);
     }
 
     .login-card {
-      background: rgba(10, 15, 25, 0.8);
-      backdrop-filter: blur(35px);
-      padding: 55px 35px;
+      background: rgba(8, 10, 28, 0.8);
+      backdrop-filter: blur(40px);
+      padding: 60px 35px;
       border-radius: 70px;
-      width: 400px;
+      width: 420px;
       text-align: center;
-      box-shadow: 0 0 90px rgba(0, 255, 213, 0.7), 0 0 0 2px rgba(0, 255, 200, 0.6);
-      transform: rotateX(2deg) rotateY(-2deg) translateZ(30px);
+      box-shadow: 0 0 100px rgba(157, 78, 221, 0.8), 0 0 0 2px var(--neon-cyan);
       animation: loginFloat 4s infinite alternate;
-      transition: 0.4s;
     }
 
     @keyframes loginFloat {
-      0% { transform: rotateX(2deg) rotateY(-2deg) translateZ(30px); }
-      100% { transform: rotateX(-2deg) rotateY(2deg) translateZ(70px); }
+      0% { transform: rotateX(2deg) translateZ(30px); }
+      100% { transform: rotateX(-2deg) translateZ(75px); }
     }
 
     .login-card h2 {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      background: linear-gradient(to right, #00ffcc, #b300ff);
+      font-size: 3.8rem;
+      background: linear-gradient(to right, var(--neon-cyan), var(--gold));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 30px cyan);
+      filter: drop-shadow(0 0 35px var(--royal-purple));
     }
 
     .login-card button {
       width: 100%;
-      padding: 18px;
-      background: linear-gradient(135deg, #00ffd5, #008cff);
+      padding: 20px;
+      background: linear-gradient(135deg, var(--gold), #ff8c00);
       border: none;
       border-radius: 50px;
       font-weight: 900;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       cursor: pointer;
       transition: 0.4s;
-      transform: translateZ(20px);
-      box-shadow: 0 20px 45px #00ffd5aa;
+      transform: translateZ(25px);
+      box-shadow: 0 25px 55px rgba(240, 185, 11, 0.7);
       color: #000;
-      letter-spacing: 1px;
     }
 
     .login-card button:hover {
-      transform: translateZ(45px) scale(1.06);
-      box-shadow: 0 35px 65px #00ffff;
+      transform: translateZ(55px) scale(1.05);
+      box-shadow: 0 40px 75px var(--gold);
     }
 
     footer {
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(5, 5, 15, 0.8);
       backdrop-filter: blur(15px);
       text-align: center;
       padding: 25px;
-      color: #aaa;
-      border-top: 2px solid #00ffd5;
-      box-shadow: 0 -10px 30px rgba(0,255,200,0.3);
+      color: #bbb;
+      border-top: 2px solid var(--electric-blue);
+      box-shadow: 0 -10px 35px rgba(59,107,255,0.4);
     }
 
-    iframe, script {
+    /* إعلانات متناسقة */
+    .ad-container {
+      background: rgba(10, 10, 22, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 750px;
+      border: 1px solid var(--royal-purple);
+      box-shadow: 0 0 35px rgba(157,78,221,0.3);
+    }
+
+    iframe {
       display: block;
       margin: 0 auto;
     }
 
-    /* تحسينات للجوال */
     @media (max-width: 768px) {
       nav {
         flex-direction: column;
         gap: 15px;
-        border-radius: 40px;
+        border-radius: 50px;
         margin: 10px;
       }
       header h1 {
@@ -410,12 +398,12 @@
 <div id="loginBox">
   <div class="login-card">
     <h2>🎮 SEKO VIP</h2>
-    <p style="color:#ccc; margin-bottom:25px; font-size:1.2rem;">تسجيل الدخول بتقنية 3D</p>
-    <button onclick="googleLogin()">🚀 تسجيل الدخول بـ Google</button>
+    <p style="color:#cfd8ff; margin-bottom:30px; font-size:1.3rem;">عالم الألعاب بتجربة 3D</p>
+    <button onclick="googleLogin()">🚀 الدخول بحساب Google</button>
   </div>
 </div>
 
-<!-- SITE CONTENT -->
+<!-- الموقع الرئيسي -->
 <div id="site" style="display:none;">
 
   <nav>
@@ -426,7 +414,7 @@
       <a href="about.html">ℹ️ عن الموقع</a>
     </div>
     <div id="userMenu">
-      <img id="userPhoto" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%2300ffd5'/%3E%3C/svg%3E" alt="user">
+      <img id="userPhoto" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%239d4edd'/%3E%3C/svg%3E" alt="user">
       <span id="userName"></span>
       <div id="dropdown">
         <button onclick="logout()">🚪 تسجيل خروج</button>
@@ -436,29 +424,29 @@
 
   <header>
     <h1>🎮 SEKO GAMES VIP</h1>
-    <p>ألعاب خيالية · تجربة 3D فريدة</p>
+    <p>ألعاب · أخبار · تجربة لونية فاخرة</p>
   </header>
 
   <div class="container">
     <div class="article" onclick="location.href='article1.html'">
-      <img src="images/مغامرة الألغاز.png" alt="لعبة ألغاز">
+      <img src="images/مغامرة الألغاز.png" alt="مغامرة الألغاز">
       <div class="article-content">
         <h2>🧩 مغامرة الألغاز</h2>
         <p>عالم عائم وألغاز ثلاثية الأبعاد.</p>
       </div>
     </div>
     <div class="article" onclick="location.href='games2.html'">
-      <img src="images/نبض الحركه.png" alt="باركور">
+      <img src="images/نبض الحركه.png" alt="نبض الحركة">
       <div class="article-content">
         <h2>⚡ نبض الحركة</h2>
-        <p>باركور وتحديات القفز.</p>
+        <p>باركور وتحديات القفز الحر.</p>
       </div>
     </div>
     <div class="article" onclick="location.href='game3.html'">
       <img src="images/ممر الموت.png" alt="ممر الموت">
       <div class="article-content">
         <h2>💀 ممر الموت</h2>
-        <p>ممرات عائمة وعقبات.</p>
+        <p>ممرات عائمة وعقبات مميتة.</p>
       </div>
     </div>
     <div class="article" onclick="location.href='games.html'">
@@ -470,23 +458,34 @@
     </div>
   </div>
 
-  <!-- إعلانات -->
-  <div style="margin:20px auto; text-align:center; transform: translateZ(10px);">
+  <!-- الإعلانات بشكل منسق وجميل -->
+  <div class="ad-container" style="text-align:center;">
     <script src="https://pl28319867.effectivegatecpm.com/61/2b/fc/612bfc2f168c47f3e5c6cc2dda0bb15b.js"></script>
   </div>
-  <div style="margin:20px auto; text-align:center;">
-    <script>atOptions={'key':'ea83ac7141cc58a9781228fbbb2020e5','format':'iframe','height':50,'width':320,'params':{}};</script>
+
+  <div class="ad-container" style="text-align:center;">
+    <script>
+      atOptions = {
+        'key' : 'ea83ac7141cc58a9781228fbbb2020e5',
+        'format' : 'iframe',
+        'height' : 50,
+        'width' : 320,
+        'params' : {}
+      };
+    </script>
     <script src="https://www.highperformanceformat.com/ea83ac7141cc58a9781228fbbb2020e5/invoke.js"></script>
   </div>
 
   <footer>
     © 2025 SEKO VIP GAMES | 
-    <a href="privacy.html" style="color:#00ffd5; text-decoration:none; font-weight:bold;">سياسة الخصوصية</a>
+    <a href="privacy.html" style="color:#f0b90b; text-decoration:none; font-weight:bold;">سياسة الخصوصية</a>
   </footer>
 </div>
 
-<div style="margin-top:15px; text-align:center;">
-  <iframe src="https://www.effectivegatecpm.com/bw7q43wy?key=b76d337652f8eaa34c7cde88b12a4d86" style="border:none; width:320px; height:50px;" scrolling="no"></iframe>
+<!-- إعلان إضافي -->
+<div style="margin-top:20px; text-align:center; background:rgba(0,0,0,0.5); backdrop-filter:blur(10px); padding:15px; border-radius:40px; max-width:400px; margin-left:auto; margin-right:auto;">
+  <iframe src="https://www.effectivegatecpm.com/bw7q43wy?key=b76d337652f8eaa34c7cde88b12a4d86"
+          style="border:none; width:320px; height:50px;" scrolling="no"></iframe>
 </div>
 
 <script type="module">
@@ -505,28 +504,28 @@
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
 
-  window.googleLogin = () => { signInWithPopup(auth, provider).catch(()=>alert("فشل تسجيل الدخول")); };
+  window.googleLogin = () => { signInWithPopup(auth, provider).catch(() => alert("فشل تسجيل الدخول")); };
   window.logout = () => { signOut(auth); };
 
   onAuthStateChanged(auth, user => {
-    if(user){
-      loginBox.style.display="none";
-      site.style.display="block";
-      userMenu.style.display="flex";
+    if (user) {
+      loginBox.style.display = "none";
+      site.style.display = "block";
+      userMenu.style.display = "flex";
       userName.textContent = user.displayName;
       userPhoto.src = user.photoURL;
     } else {
-      loginBox.style.display="flex";
-      site.style.display="none";
-      userMenu.style.display="none";
+      loginBox.style.display = "flex";
+      site.style.display = "none";
+      userMenu.style.display = "none";
     }
   });
 
-  document.addEventListener("click", e=>{
-    if(userMenu.contains(e.target)){
-      dropdown.style.display = dropdown.style.display==="block" ? "none" : "block";
+  document.addEventListener("click", e => {
+    if (userMenu.contains(e.target)) {
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
     } else {
-      dropdown.style.display="none";
+      dropdown.style.display = "none";
     }
   });
 </script>
